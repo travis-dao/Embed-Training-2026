@@ -82,6 +82,8 @@ protected:
 private:
 
     char     dt[10];      // working buffer
+    uint8_t _addr_write;
+    uint8_t _addr_read;
 
     IMU::EulerAngles imuAngles;
 
