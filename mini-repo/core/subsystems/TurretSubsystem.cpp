@@ -98,7 +98,8 @@ void TurretSubsystem::periodic(float chassisRpm)
     // TODO: What do you think the motors should be doing during sleep mode? 
     if (turret_state.turret_mode == SLEEP)
     {
-      
+      yaw.setMotorOutput(0, DJIMotor::OFF);
+      pitch.setMotorOutput(0, DJIMotor::OFF);
     }
     else if (turret_state.turret_mode == AIM) 
     {
@@ -109,6 +110,8 @@ void TurretSubsystem::periodic(float chassisRpm)
             turret_time = us_ticker_read();
             
             //TODO: What should the motors be doing?
+            yaw.setMotorOutput(0, DJIMotor::ERR);
+            pitch.setMotorOutput(0, DJIMotor::ERR);
 
             // Week 4/5 TODO: what should the PIDs do if we get a NAN? 
 
@@ -116,8 +119,8 @@ void TurretSubsystem::periodic(float chassisRpm)
         }
 
         int dir = 0; // TODO: What's the optimal way to turn if we have to increase our yaw or decrease our yaw? HINT: Set dir either to 1 or -1  
-        if      (deltaYaw >  0.0f) dir = 0;
-        else if (deltaYaw <  0.0f) dir = 0;
+        if      (deltaYaw >  0.0f) dir = 1;
+        else if (deltaYaw <  0.0f) dir = -1;
         
         yaw.pidPosition.feedForward = -chassis_rpm * 2 * PI / 60;
 
@@ -134,7 +137,7 @@ void TurretSubsystem::periodic(float chassisRpm)
         // printf("yp %.2f | %.2f\n", des_yaw_power, deltaYaw);
         
         // TODO: What's going on above? What should we be doing with the yaw motor here?
-        
+        yaw.setPower(des_yaw_power);
 
 
         // Pitch calc

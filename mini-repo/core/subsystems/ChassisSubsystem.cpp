@@ -57,7 +57,12 @@ ChassisSubsystem::ChassisSubsystem(const Config &config)
 //TODO: Implement setWheelSpeeds to set the speed of each wheel based on the desired wheel speeds. 
 void ChassisSubsystem::setWheelSpeeds(WheelSpeeds wheelSpeeds)
 {
+    desiredWheelSpeeds = wheelSpeeds;
 
+    LF.setSpeed(wheelSpeeds.LF);
+    RF.setSpeed(wheelSpeeds.RF);
+    LB.setSpeed(wheelSpeeds.LB);
+    RB.setSpeed(wheelSpeeds.RB);
 }
 
 void ChassisSubsystem::setChassisSpeeds(ChassisSpeeds desiredChassisSpeeds_, DRIVE_MODE mode)
