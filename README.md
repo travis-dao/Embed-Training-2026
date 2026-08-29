@@ -11,6 +11,8 @@ Good luck, and don't be afraid to contact your embed lead if you have any questi
 
 You will have to do some set up for this training, although it shouldn't take too terribly long. Unless if you're on windows, in which case, it could take some time. Luckily your author is on windows, so please contact me if/when you run into issues. 
 
+Also, at the end of this page, I will have a list of helpful extensions you should have on VS Code. It is optional, but for your quality of life, you probably shouldn't skip it.
+
 ### 1. IDE
 
 For those of you who already have a proper IDE set up with git, feel free to skip to the next part. For everyone else, your first step should be to download an IDE. While there are other options, such as CLion, the one we recommend is Visual Studio Code, which you can download [here](https://code.visualstudio.com/download?_exp_download=fb315fc982). If you're confused by all the options, just choose the big button at the top under each platform icon (if you're on linux I trust you can figure this out). From there, go ahead and set up VS code.
@@ -156,3 +158,26 @@ ninja: no work to do.
 ```
 
 If that doesn't work, try `cmake -S mini-repo -B mini-repo/build -G Ninja` 
+
+## 4. Quality of Life Extensions
+
+This part is assuming you're on VScode, but I imagine that if you're on some other IDE, you'll very likely have some analogs for these. These are arranged in order of most to least useful. Clangd is really the only one you need now, but the others are nice to have for when you start working on your capstone
+
+
+### 1. Clangd
+
+This extension basically makes your job as a programmer easier. It goes through the build and basically indexes everything (functions, variables, etc.) so that you can autocomplete things as you type, and more importantly, highlights all of your errors and questionably written code. Since it goes through the build it's a lot more robust than the C++ intellisense extension. 
+
+![Warning](TrainingWeeks/MiscAssets/ClangdWarning.png)
+
+Sometimes I fear it might be a little too thorough.
+
+### 2. Serial Monitor
+
+Should be pretty self-explanitory, this one lets you read print statements from the nucleo. 
+
+### 3. Git Graph & GitLens
+
+These two are both helpful for anything git-related. Inline gitblame w/ commit messages, as well as a visualized tree of all the different git branches and how they came to be. The second part won't be too relevant to you until you're farther along in your TR journey, but it doesn't hurt to mention them now. 
+
+There's others along the way that are more niche, but if they're ever relevant to your projects hopefully I'll remember to let you know. 
