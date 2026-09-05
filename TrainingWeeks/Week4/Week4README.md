@@ -12,7 +12,7 @@ In control system theory a block diagram might look something like this:
 
 Essentially the idea behind controls is that u have a certain input (signal/trajectory) and your plant will react to that input signal in a certain way. This is called the output signal or the behavior of the system. 
 
-What a controller allows u to do is to follow the trajectory of the input signal as best as possible given the behavior of your plant. The combined controller and plant is called a system. Basically, you want your head to turn 90 degrees, and a controller will change that from "90 degrees" to something ur motor can understand for it to turn 90 :D
+What a controller allows u to do is to follow the trajectory of the input signal as best as possible given the behavior of your plant. The combined controller and plant is called a system. Basically, you want your head to turn 90 degrees, and a controller will help the mtoro achieve this accurately and reliably. :D
 
 ## Why?
 
@@ -24,7 +24,7 @@ This is an example of slow, unresponsive controls, we dont rly want this.
 
 ![Bad controls](Assets/bad_controls.gif)
 
-When we want any physical system to respond the way we want, we need to make sure we have code written to convert our commands into something (usually a power/current) which the motor can understand. This is where controls comes in.
+Physical systems have characteristics that make it harder for our mechanisms to achieve our goals reliably. For example, we may want to quickly drive from point A to point B, but friction and tire slip make us move slowly and unpredictably. When we want any physical system to respond the way we want, we need to make sure we have code written to convert our commands into something (usually a power/current) which the motor can understand and follow accurately/reliably. This is where controls comes in.
 
 Now 🤓, we want to control a system to satisfy many objective metrics: 
 
@@ -39,6 +39,8 @@ Well the most obvious benefit we can see is going to be good aim/CV, since good 
 Secondly, a very important benefit that most people dont really think about for controls is the chassis motors. Good chassis controls exponentially improves our movement and helps significantly in ensuring accurate odometry.
 
 So, the whole robot works smoother and feels more responsive when we have good controls (See: our robots looking snappy)
+
+In general, good controls give our robots reliability and predictability that our team can lean on in competition. Particularly, in the context of competition, having reliable robots is key to success.
 
 ![Good controls](Assets/good_controls.gif)
 
