@@ -65,6 +65,15 @@ void ChassisSubsystem::setWheelSpeeds(WheelSpeeds wheelSpeeds)
     RB.setSpeed(wheelSpeeds.RB);
 }
 
+void ChassisSubsystem::setWheelPower(WheelSpeeds wheelPower) {
+    desiredWheelPower = wheelPower;
+
+    LF.setSpeed(desiredWheelPower.LF);
+    RF.setSpeed(desiredWheelPower.RF);
+    LB.setSpeed(desiredWheelPower.LB);
+    RB.setSpeed(desiredWheelPower.RB);
+}
+
 void ChassisSubsystem::setChassisSpeeds(ChassisSpeeds desiredChassisSpeeds_, DRIVE_MODE mode)
 {
     double yawCurrent = 0;
