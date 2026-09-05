@@ -65,13 +65,14 @@ void ChassisSubsystem::setWheelSpeeds(WheelSpeeds wheelSpeeds)
     RB.setSpeed(wheelSpeeds.RB);
 }
 
-void ChassisSubsystem::setWheelPower(WheelSpeeds wheelPower) {
+void ChassisSubsystem::setWheelPower(WheelSpeeds wheelPower)
+{
     desiredWheelPower = wheelPower;
 
-    LF.setSpeed(desiredWheelPower.LF);
-    RF.setSpeed(desiredWheelPower.RF);
-    LB.setSpeed(desiredWheelPower.LB);
-    RB.setSpeed(desiredWheelPower.RB);
+    LF.setPower(wheelPower.LF);
+    RF.setPower(wheelPower.RF);
+    LB.setPower(wheelPower.LB);
+    RB.setPower(wheelPower.RB);
 }
 
 void ChassisSubsystem::setChassisSpeeds(ChassisSpeeds desiredChassisSpeeds_, DRIVE_MODE mode)

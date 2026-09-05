@@ -185,18 +185,21 @@ class Infantry : public BaseRobot {
 
         // Turret from remote
         // TODO: IMPLEMENT TURRET LOGIC HERE (Hint: update desired pitch and yaw from remote readings)
-        yaw_desired_angle = jyaw;
-        pitch_desired_angle = jpitch;
+        yaw_desired_angle = jyaw * 300 * dt_us / 1000000;
+        pitch_desired_angle = jpitch * 150 * dt_us / 1000000;
 
 
 
         // Chassis logic
         // TODO: ADD THE CHASSIS LOGIC HERE
         if (remote_.getMode() == DJIRemote2::ModeSwitch::MODE_N) {
+            des_chassis_state.vOmega = 0;
             chassis_.setChassisSpeeds(des_chassis_state, ChassisSubsystem::ROBOT_ORIENTED);
-            chassis_.setWheelPower({0, 0, 0, 0});
+            des_turret_state.turret_mode = TurretState::AIM;
         } else {
-            chassis_.setChassisSpeeds(ChassisSpeeds{0, 0, 0}, ChassisSubsystem::ROBOT_ORIENTED);
+            chassis_.setChassisSpeeds(ChassisSpeeds{0, 0, 0}, ChassisSubsystem::YAW_ORIENTED);
+            chassis_.setWheelPower({0, 0, 0, 0});
+            des_turret_state.turret_mode = TurretState::AIM;
         }
 
 
