@@ -98,8 +98,8 @@ void TurretSubsystem::periodic(float chassisRpm)
     // TODO: What do you think the motors should be doing during sleep mode? 
     if (turret_state.turret_mode == SLEEP)
     {
-      yaw.setMotorOutput(0, DJIMotor::OFF);
-      pitch.setMotorOutput(0, DJIMotor::OFF);
+      yaw.setPower(0);
+      pitch.setPower(0);
     }
     else if (turret_state.turret_mode == AIM) 
     {
@@ -110,8 +110,8 @@ void TurretSubsystem::periodic(float chassisRpm)
             turret_time = us_ticker_read();
             
             //TODO: What should the motors be doing?
-            yaw.setMotorOutput(0, DJIMotor::ERR);
-            pitch.setMotorOutput(0, DJIMotor::ERR);
+            yaw.setSpeed(0);
+            pitch.setSpeed(0);
 
             // Week 4/5 TODO: what should the PIDs do if we get a NAN? 
 
