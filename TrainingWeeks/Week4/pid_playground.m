@@ -15,11 +15,11 @@ function pid_playground(mode, gainName, values)
 % =========================================================================
 %  YOUR GAINS - this is the part you edit
 % =========================================================================
-kp = 5.00;      % proportional   [command per degree of error]
-ki = 0.00;      % integral       [command per degree-second]
-kd = 0.000;     % derivative     [command per degree-per-second]
+kp = 0.15;      % proportional   [command per degree of error]
+ki = 0.5;      % integral       [command per degree-second]
+kd = 0.008;     % derivative     [command per degree-per-second]
 
-DISTURBANCE = 0.00;   % set to 0.20 for Exercise 4 (the chassis starts spinning)
+DISTURBANCE = 0.20;   % set to 0.20 for Exercise 4 (the chassis starts spinning)
 SETPOINT    = 20;     % degrees. Exercise 7 uses 120; put it back to 20 afterwards.
 % =========================================================================
 

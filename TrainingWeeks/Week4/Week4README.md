@@ -132,12 +132,16 @@ matlab
 
 Before you look at the answer, predict: what happens to rise time as Kp goes up? What happens to overshoot?
 
+Travis: As Kp increases, the error correction will be higher. Instead of gradually increasing to the target value, the graph will overshoot and oscillate at decreasing amplitudes.
+
 ### Exercise 2 - Add kD Term
 
 Set kp = 0.04 (the fast-but-ringing one), leave ki = 0, DISTURBANCE = 0, SETPOINT = 20, then:
 
 matlab
 >> pid_playground('sweep', 'kd', [0 0.002 0.004 0.008 0.016 0.03])
+
+Travis: Higher Kd = more damping effect on Kp.
 
 ### Exercise 3 - Recalibrate kP
 
@@ -150,16 +154,20 @@ matlab
 
 Discuss your results.
 
+Travis: Increasing Kp increases the error corrections, where at Kp=0.25, there is some overshoot, followed by decreasing oscillations. We can use bigger Kp values compared to exercise 1 because Kd is damping the error correction so less overshooting occurs.
+
 ### Exercise 4 - Adding the kI Term
 
-So far, nothing has been fighting us. Now turn on the disturbance. You cam imagine this as the chassis  spinning at t = 1 s and dragging the turret with it.
+So far, nothing has been fighting us. Now turn on the disturbance. You can imagine this as the chassis spinning at t = 1 s and dragging the turret with it.
 
 Set kp = 0.15, kd = 0.008, DISTURBANCE = 0.20, SETPOINT = 20:
 
 matlab
 >> pid_playground('sweep', 'ki', [0 0.2 0.5 1 2 4])
 
-Disucss your results.
+Discuss your results.
+
+Travis: Most of the graphs approach the target value pretty fast, with the sole exception of Ki=4 where the graph oscillates stably (too much overshoot). At t=1, there is a disturbance which causes a positive jump, and the graphs with higher Ki values correct the disturbance the fastest.
 
 ### Exercise 5 - Difference between measurement and actual
 
@@ -170,9 +178,15 @@ Set kp = 0.15, ki = 0.5, DISTURBANCE = 0, SETPOINT = 20, and watch the chatter c
 matlab
 >> pid_playground('sweep', 'kd', [0.008 0.02 0.05 0.10])
 
+Travis: So raw measurement are tweaking out and the imu smooths it out? Though at high Kd values, it justs jumps between 1 and -1.
+
 ### Exercise 6 - Tuning On Your Own
 
 Now do it yourself. Set DISTURBANCE = 0.20 and SETPOINT = 20, and find gains that meet all three at once:
+
+- Kp = 0.15
+- Ki = 0.5
+- Kd = 0.008
 
 Requirement	Limit
 1.	Overshoot	≤ 15%
@@ -181,8 +195,17 @@ Requirement	Limit
 
 ### General Questions
 1. Your turret settles 2° short of the target every time and stays there. Which term is missing, and why does adding it fix this specifically?
+
+The "I" term is missing, and adding it adds a constant state error to the pid controller, which should addresses the 2° short of target issue.
+
 2. Why is "add D, then raise P again" better than just picking a Kp and adding D once?
+
+Adding D dampens the error correction of P, which could change the behavior of the system. Hence why it's a good idea to recalibrate P after adding D.
+
 3. Your IMU only publishes a new reading every 10 ms, but your control loop runs every 1 ms. What is the D term looking at on the nine ticks in between?
+
+The D term looks at the current reading (@ 1st ms). Intuitively, this makes sense because of the staircase-pattern readings from running pid_playground('imu').
+
 
 ### Advice
 
