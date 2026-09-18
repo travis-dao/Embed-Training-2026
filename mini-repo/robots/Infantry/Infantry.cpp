@@ -5,6 +5,7 @@
 #include "subsystems/TurretSubsystem.h"
 
 #include "util/communications/CANHandler.h"
+#include "util/communications/DJIRemote2.h"
 #include "util/communications/PwmIn.h"
 // #include "util/communications/jetson/Jetson.h"
 #include "util/motor/DJIMotor.h"
@@ -205,6 +206,10 @@ class Infantry : public BaseRobot {
             des_turret_state.yaw_angle_degs = turret_.getState().yaw_angle_degs;
             yaw_desired_angle = turret_.getState().yaw_angle_degs;
             des_turret_state.pitch_angle_degs = 0;
+        } else if (remote_.getMode() == DJIRemote2::ModeSwitch::MODE_S) {
+            des_chassis_state.vOmega = 0;
+            chassis_.setChassisSpeeds(des_chassis_state, ChassisSubsystem::YAW_ORIENTED);
+            des_turret_state.turret_mode = TurretState::AIM;
         } else {
             chassis_.setChassisSpeeds(ChassisSpeeds{0, 0, 0}, ChassisSubsystem::YAW_ORIENTED);
             chassis_.setWheelPower({0, 0, 0, 0});
